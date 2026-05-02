@@ -216,7 +216,7 @@ END
 	echo "========================================================================="
 }
 
-function install_netcore(){
+function install_netcore_backup(){
 	#install netcore
 	#https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404
 	echo "========================================================================="
@@ -225,6 +225,37 @@ function install_netcore(){
 	apt update
 	apt install -y dotnet-sdk-6.0 dotnet-sdk-7.0 dotnet-sdk-8.0 dotnet-sdk-8.0 dotnet-sdk-9.0
 	echo ""
+	echo "Done"
+	echo "========================================================================="
+}
+
+function install_netcore(){
+	echo "========================================================================="
+	echo "Installing .NET SDK (Optimized for Ubuntu 26.04+)"
+	
+	# Remove the problematic PPA that causes 'Connection refused' errors
+	add-apt-repository --remove ppa:dotnet/backports -y
+	apt update
+
+	# Use the official Microsoft dotnet-install script to bypass repository issues
+	# This is safer for newer Ubuntu versions like Resolute Raccoon
+	wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+	chmod +x ./dotnet-install.sh
+
+	# Install .NET 8 (LTS) and .NET 9 (Latest) as your projects require > net8[cite: 1]
+	./dotnet-install.sh --channel 8.0
+	./dotnet-install.sh --channel 9.0
+
+	# Create a symbolic link so systemd services can find 'dotnet' at /usr/bin/dotnet[cite: 1]
+	# This fixes the 'status=203/EXEC' error seen in your service logs[cite: 1]
+	ln -s $HOME/.dotnet/dotnet /usr/bin/dotnet
+
+	# Clean up the installer script
+	rm dotnet-install.sh
+
+	echo ""
+	echo "Verification:"
+	dotnet --version
 	echo "Done"
 	echo "========================================================================="
 }
