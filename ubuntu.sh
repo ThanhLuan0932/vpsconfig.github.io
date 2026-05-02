@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# /bin/bash -c "$(curl -fsSL vpsconfig.github.io/ubuntu.sh)"	
+# /bin/bash -c "$(curl -fsSL thanhluan0932.github.io/vpsconfig.github.io/ubuntu.sh)"	
 
 function install_postgres_remote()
 {
@@ -889,7 +889,7 @@ END
 
 		# Download sample site
 		echo "Downloading sample .NET site..."
-		wget vpsconfig.github.io/SampleBlankSite.tar -P /var/www/nginx/sites/$service_name/public/
+		wget thanhluan0932.github.io/vpsconfig.github.io/SampleBlankSite.tar -P /var/www/nginx/sites/$service_name/public/
 		tar -xvf /var/www/nginx/sites/$service_name/public/SampleBlankSite.tar -C /var/www/nginx/sites/$service_name/public
 		rm -fv /var/www/nginx/sites/$service_name/public/SampleBlankSite.tar
 		
