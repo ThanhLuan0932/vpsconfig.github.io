@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sh -c "$(curl -fsSL vpsconfig.github.io/centos.sh)"	
+#sh -c "$(curl -fsSL thanhluan0932.github.io/vpsconfig.github.io/centos.sh)"	
 
 
 function install_postgres_remote()
@@ -537,7 +537,7 @@ END
 
 	echo "========================================================================="
 	echo "Donwload sample site"
-	wget vpsconfig.github.io/install/SampleBlankSite.tar -P  /var/www/nginx/$server_name/public/
+	wget thanhluan0932.github.io/vpsconfig.github.io/install/SampleBlankSite.tar -P  /var/www/nginx/$server_name/public/
 	tar -xvf /var/www/nginx/$server_name/public/SampleBlankSite.tar -C /var/www/nginx/$server_name/public
 	rm -fv  /var/www/nginx/$server_name/public/SampleBlankSite.tar
 	mv /var/www/nginx/$server_name/public/SampleBlankSite.deps.json  /var/www/nginx/$server_name/public/$dll_name.deps.json
